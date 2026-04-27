@@ -1,0 +1,371 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 70pt;
+    color: #ffee00;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: 0px;
+    transition: letter-spacing 220ms ease, transform 220ms ease;
+    cursor: default;
+
+}
+
+h1:hover {
+    letter-spacing: 100px;
+}
+
+h2 {
+    font-family: 'Optima', Times, serif;
+    font-size: 16pt;
+    color: #a1a1a1;
+    padding: 0;
+    margin-top: -100px;
+    margin-bottom: 160px;
+    margin-left: 10px;
+    letter-spacing: 13px;
+    transition: letter-spacing 220ms ease, transform 220ms ease;
+    cursor: default;
+
+}
+
+@font-face {
+    font-family: "SymbolUnlicencedTrial-Regular";
+    src: url("./fonts/SymbolUnlicencedTrial-Regular.otf") format("truetype");
+}
+
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: "SymbolUnlicencedTrial-Regular", monospace;
+    background-image: url("./images/background4.svg");
+    background: transparent;
+    /* allow bg-image-layer to show */
+}
+
+
+/* 输入区 */
+#input-bar {
+    margin-bottom: 20px;
+}
+
+#input-bar {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    background: none;
+    padding: 6px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 642px;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+#text-input {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 6px 8px;
+    width: 300px;
+    border: 2px solid #ffee00;
+    outline: none;
+}
+
+
+#text-input {
+    border-radius: 8px;
+}
+
+#add-btn {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 6px 12px;
+    margin-left: 8px;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+#add-btn,
+#read-selected-btn,
+#read-all-btn {
+    border-radius: 8px;
+
+}
+
+#read-selected-btn {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 6px 12px;
+    margin-left: 8px;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#read-all-btn {
+    font-family: inherit;
+    font-size: 16px;
+
+    #text-area {
+        border: 2px solid rgba(0, 0, 0, 0.12);
+        padding: 16px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    padding: 6px 12px;
+    margin-left: 8px;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* 文本框（排字区域） */
+#text-area {
+    width: 100%;
+    max-width: 760px;
+    min-height: 200px;
+    border: 2px solid #ffee00;
+    border-radius: 12px;
+    padding: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+
+    /* 允许换行 */
+    word-break: break-all;
+    /* 按字符断行 */
+}
+
+/* ensure text-area sits left within the page */
+#text-area {
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* 单个字和词 */
+.word {
+    display: inline-block;
+    margin-right: 0.6ch;
+    padding: 2px 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.word:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Sentence builder area */
+
+
+.sentence {
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px;
+    border: 2px solid #ffee00;
+    margin: 8px;
+    border-radius: 6px;
+    background: #fff;
+    vertical-align: top;
+    touch-action: none;
+    cursor: move;
+}
+
+.sentence.drag-over {
+    outline: 3px dashed #dcef74;
+}
+
+.sentence-word {
+    display: inline-block;
+    margin-right: 0.6ch;
+    padding: 2px 4px;
+    cursor: grab;
+}
+
+.sentence.selected {
+    background: #e5e4e4;
+}
+
+/* UI toggle: hide input bar and text area when body has .ui-hidden */
+body.ui-hidden #input-bar,
+body.ui-hidden #text-area {
+    display: none !important;
+}
+
+/* Also hide audio controls (sliders) when UI is hidden */
+body.ui-hidden #audio-controls-wrapper,
+body.ui-hidden .audio-controls {
+    display: none !important;
+}
+
+/* SVG connection lines */
+svg.connection-layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* allow page interactions through the svg */
+}
+
+svg.connection-layer line.connection {
+    stroke: #ffee00;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+svg.connection-layer line.temp {
+    stroke: #ffee00;
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
+}
+
+/* Fullscreen background image layer (used by swipe-to-change feature) */
+#bg-image-layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* sit behind page content */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: opacity 260ms ease, background-image 260ms ease;
+    pointer-events: none;
+    opacity: 1;
+}
+
+/* background video inside the bg layer */
+#bg-video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#bg-image-layer.hidden {
+    opacity: 0;
+}
+
+/* Audio play button fixed at bottom center */
+.audio-btn {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 1100;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-family: inherit;
+    cursor: pointer;
+
+}
+
+.audio-btn[aria-pressed="true"] {
+    background: #ffee00;
+}
+
+#bg-audio {
+    display: none;
+}
+
+/* Audio controls container */
+#audio-controls-wrapper {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    /* play button overlays this container */
+    z-index: 1000;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    pointer-events: auto;
+}
+
+/* When the play button is used inside the input bar, render it inline */
+#input-bar .audio-btn {
+    position: static;
+    transform: none;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
+    margin-left: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* record/replay buttons use same appearance as inline audio button */
+#record-btn,
+#replay-btn {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 6px 12px;
+    margin-left: 8px;
+    background: #ffee00;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#record-btn[aria-pressed="true"] {
+    background: #ffee00;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 18px;
+    align-items: center;
+}
+
+.audio-control {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.audio-control label {
+    font-size: 12px;
+    color: #222;
+    min-width: 64px;
+}
+
+.audio-control input[type=range] {
+    width: 160px;
+}
+
+.audio-control span {
+    min-width: 44px;
+    text-align: right;
+    font-size: 12px;
+    color: #333;
+}
