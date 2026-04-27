@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Diagram</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+<body>
+  <h1>离散的语言 Discrete Language</h1>
+  <h2>An ever-expanding sentence, An never ending article</h2>
+  <div id="input-bar">
+    <input id="text-input" type="text" placeholder="type here…" />
+    <button id="add-btn">ADD</button>
+    <button id="read-selected-btn">Read Selected</button>
+    <button id="read-all-btn">Read All</button>
+    <button id="play-audio" class="audio-btn" aria-pressed="false">Play Soundtrack</button>
+    <button id="record-btn" class="audio-btn" aria-pressed="false">Start Recording</button>
+    <button id="replay-btn" class="audio-btn">Replay Recording</button>
+  </div>
+
+  <div id="text-area"></div>
+
+  <audio id="bg-audio" src="ambient.mp3" preload="auto" crossorigin="anonymous"></audio>
+  <div id="audio-controls-wrapper">
+    <div id="audio-controls" class="audio-controls" aria-hidden="false">
+      <div class="audio-control">
+        <label for="volume-slider">Reader Volume</label>
+        <input id="volume-slider" type="range" min="0" max="100" value="80">
+        <span id="volume-val">0.80</span>
+      </div>
+      <div class="audio-control">
+        <label for="speed-slider">Reader Speed</label>
+        <input id="speed-slider" type="range" min="50" max="200" value="100">
+        <span id="speed-val">1.00x</span>
+      </div>
+      <div class="audio-control">
+        <label for="dist-slider">Vocal Distortion</label>
+        <input id="dist-slider" type="range" min="0" max="100" value="0">
+        <span id="dist-val">0</span>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
